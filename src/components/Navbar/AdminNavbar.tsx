@@ -17,7 +17,14 @@ import useContexts from "@/hooks/useContext";
 const AdminNavbar = () => {
   const { user, handleLogout } = useContexts();
 
+  console.log(user);
+
   const handleLogouts = () => {
+    localStorage.removeItem("accessToken");
+
+    // Remove the cookie by setting its expiration to a past date
+    document.cookie =
+      "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     handleLogout();
   };
 

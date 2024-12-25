@@ -86,3 +86,11 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+.btn-primary {
+  @apply bg-gradient-to-br from-[#4658fe]  to-[#e03df5] shadow shadow-[#e03df5]    text-white flex transition-all duration-200 items-center justify-center gap-2  font-bold py-[8px] px-[24px] rounded-full;
+}
+.btn-secendary {
+  @apply bg-gradient-to-br from-pink-500 to-purple-500 ml-2  border-none text-white shadow shadow-purple-500   bg-[#f85606]  flex transition-all duration-200 items-center justify-center gap-2  font-bold py-[8px] px-[24px] rounded-full;
+}
