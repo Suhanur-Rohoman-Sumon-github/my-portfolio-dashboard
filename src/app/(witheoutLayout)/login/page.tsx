@@ -26,7 +26,7 @@ const Login = () => {
     const { email, password } = data;
     handleLogin(email, password)
       .then((result) => {
-        router.push("/");
+        router.push("/admin-home");
         const { accessToken } = result.user;
         localStorage.setItem("accessToken", accessToken);
         document.cookie = `accessToken=${accessToken}; Path=/; Secure; SameSite=Strict; Max-Age=86400`;

@@ -1,23 +1,12 @@
-import { cookies } from "next/headers";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "../../styles/globals.css";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Providers } from "../provider";
 import { AdminSidebar } from "@/components/ui/AdminSidebar";
 import AdminNavbar from "@/components/Navbar/AdminNavbar";
 import AuthProvider from "@/context";
-import { Providers } from "../provider";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -29,31 +18,32 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Access cookies using next/headers
   const cookieStore = await cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
 
+  // Redirect to login if no access token
   if (!accessToken) {
     redirect("/login");
   }
-
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Providers>
-          <AuthProvider>
-            <AdminNavbar />
-            <SidebarProvider>
-              <SidebarInset>
+    <html lang="en" suppressHydrationWarning>
+      <body className="antialiased">
+        <AuthProvider>
+          <Providers>
+            {/* Main container for the layout */}
+            <div className="">
+              {/* Sidebar */}
+
+              <SidebarProvider>
                 <AdminSidebar />
-                {children}
-              </SidebarInset>
-            </SidebarProvider>
-          </AuthProvider>
-        </Providers>
+                <SidebarInset>
+                  <AdminNavbar />
+                  <main>{children}</main>
+                </SidebarInset>
+              </SidebarProvider>
+            </div>
+          </Providers>
+        </AuthProvider>
       </body>
     </html>
   );
