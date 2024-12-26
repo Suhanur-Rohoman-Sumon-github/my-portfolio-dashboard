@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useCreateProjectsMutations } from "@/hooks/blogs.hooks";
 
 // Validation schema using Zod
 const projectsValidationSchema = z.object({
@@ -32,10 +34,11 @@ const projectsValidationSchema = z.object({
 });
 
 const CreateProject = () => {
+  const { mutate: handleCreateProjects } = useCreateProjectsMutations();
   const {
     register,
     handleSubmit,
-    control,
+
     formState: { errors },
     setValue,
     getValues,
@@ -57,7 +60,7 @@ const CreateProject = () => {
   });
 
   const onSubmit = (data: any): void => {
-    console.log("Form Data Submitted:", data);
+    handleCreateProjects(data);
   };
 
   const technologyOptions = [

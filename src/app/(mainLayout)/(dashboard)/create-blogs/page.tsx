@@ -1,18 +1,14 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"; // Ensure this is installed: `npm install @hookform/resolvers zod`
+import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues } from "react-hook-form";
-import { AiOutlineUpload } from "react-icons/ai";
-
-import useContexts from "@/hooks/useContext";
-import Loading from "@/components/ui/Loading";
 import SSForm from "@/components/form/SSForm";
 import SSInput from "@/components/form/SSInput";
 import SSTextArea from "@/components/form/SSTextArea";
 
 import { z } from "zod";
+import { useCreateBlogMutations } from "@/hooks/blogs.hooks";
 
-// Validation schema using Zod
 const blogValidationSchema = z.object({
   title: z.string().min(1, "Title is required"),
   date: z.string().default(new Date().toDateString()),
@@ -21,10 +17,10 @@ const blogValidationSchema = z.object({
 });
 
 const CreateBlog = () => {
-  const { user } = useContexts();
-
+  const { mutate: handleCreateBLogs } = useCreateBlogMutations();
   const handleSubmit = (data: FieldValues): void => {
     console.log("Form Data Submitted:", data);
+    handleCreateBLogs(data);
   };
 
   return (
@@ -35,25 +31,19 @@ const CreateBlog = () => {
             Create Blog
           </h2>
 
-          {/* Form Section */}
           <SSForm
             resolver={zodResolver(blogValidationSchema)}
             onSubmit={handleSubmit}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Blog Inputs */}
               <SSInput label="Title" name="title" type="text" />
               <SSInput label="Image URL" name="image" type="url" />
             </div>
 
-            {/* Description */}
             <div className="mt-6">
               <SSTextArea label="Description" name="description" />
             </div>
 
-            {/* Image URL */}
-
-            {/* Submit Button */}
             <div className="mt-8">
               <button
                 className="w-full bg-primary text-white py-2 rounded-md"
