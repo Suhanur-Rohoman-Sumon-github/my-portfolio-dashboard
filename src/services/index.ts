@@ -26,3 +26,19 @@ export const createBlogs = async (projectData:any) => {
   const { data } = await axios.post(`http://localhost:5000/api/v1/universal/create-blogs`,projectData);
   return data.data; 
 };
+export const getAllExperience = async () => {
+  const { data } = await axios.get(`http://localhost:5000/api/v1/universal/get-experience`);
+  return data.data; 
+};
+
+
+export const createExperience = async (experienceData:any) => {
+   try {
+   const { data } = await axios.post(`http://localhost:5000/api/v1/universal/create-experience`,experienceData);
+  return data.data; 
+  } catch (error: any) {
+     if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data.message)}
+      console.log(error);
+  }
+};

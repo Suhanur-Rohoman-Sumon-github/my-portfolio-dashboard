@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createBlogs, createMyProjects, getMyBlogs, getMyProjects } from "@/services";
+import { createBlogs, createExperience, createMyProjects, getAllExperience, getMyBlogs, getMyProjects } from "@/services";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
@@ -57,6 +57,36 @@ export const useGetMyBlogQuery = () => {
        queryKey: ["get-my-Blogs"],
     queryFn: async () => {
       const data = await getMyBlogs();
+
+      return data;
+    },
+  });
+
+  return { data, refetch, isLoading, isError };
+};
+export const useCreateMyExperienceMutations = () => {
+  return useMutation<any, Error, FieldValues>({
+    mutationKey: ["create-experience"],
+    mutationFn: async (experienceData) => {
+      await createExperience(experienceData); 
+    },
+    onSuccess: () => {
+      toast.success("Experience created successfully!");
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to create product.");
+    },
+  });
+};
+
+
+export const useGetAllMyExperienceQuery = () => {
+    
+  
+  const { data, refetch, isLoading, isError } = useQuery<any, Error>({
+       queryKey: ["get-my-experience"],
+    queryFn: async () => {
+      const data = await getAllExperience();
 
       return data;
     },

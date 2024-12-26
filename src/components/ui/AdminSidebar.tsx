@@ -72,7 +72,7 @@ export function AdminSidebar() {
           </h2>
           <SidebarMenuItem>
             <Link
-              href="all-blogs"
+              href="/all-blogs"
               className="flex items-center gap-3 px-5 py-3 hover:bg-gray-100 rounded-md transition"
             >
               <LiaBlogSolid className="text-purple-500" size={18} />
@@ -86,6 +86,29 @@ export function AdminSidebar() {
             >
               <TbLogs className="text-green-500" size={18} />
               <span>Create Blogs</span>
+            </Link>
+          </SidebarMenuItem>
+        </SidebarGroup>
+        <SidebarGroup>
+          <h2 className="px-5 pt-6 pb-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+            Experience Management
+          </h2>
+          <SidebarMenuItem>
+            <Link
+              href="/my-expariances"
+              className="flex items-center gap-3 px-5 py-3 hover:bg-gray-100 rounded-md transition"
+            >
+              <LiaBlogSolid className="text-purple-500" size={18} />
+              <span>All Experience</span>
+            </Link>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <Link
+              href="/create-experience"
+              className="flex items-center gap-3 px-5 py-3 hover:bg-gray-100 rounded-md transition"
+            >
+              <TbLogs className="text-green-500" size={18} />
+              <span>Create experience</span>
             </Link>
           </SidebarMenuItem>
         </SidebarGroup>
