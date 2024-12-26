@@ -30,9 +30,9 @@ export default async function RootLayout({
       <body className="antialiased">
         <AuthProvider>
           <Providers>
-            {/* Main container for the layout */}
+          
             <div className="">
-              {/* Sidebar */}
+             
 
               <SidebarProvider>
                 <AdminSidebar />
