@@ -20,8 +20,7 @@ const Login = () => {
 
   const router = useRouter();
 
-  // Fetch the redirect URL from the query params
-
+ 
   const onSubmit = (data: FieldValues) => {
     const { email, password } = data;
     handleLogin(email, password)

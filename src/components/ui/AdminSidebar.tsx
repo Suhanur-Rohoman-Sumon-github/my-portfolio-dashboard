@@ -97,7 +97,7 @@ export function AdminSidebar() {
           </h2>
           <SidebarMenuItem>
             <Link
-              href="/admin/settings"
+              href="/settings"
               className="flex items-center gap-3 px-5 py-3 hover:bg-gray-100 rounded-md transition"
             >
               <FaCog className="text-gray-600" size={18} />

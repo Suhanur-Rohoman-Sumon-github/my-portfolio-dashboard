@@ -78,10 +78,8 @@ const AdminNavbar = () => {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Avatar className="cursor-pointer">
-                    <AvatarImage
-                      src={user?.avatar || "https://github.com/shadcn.png"}
-                    />
-                    <AvatarFallback>{user?.name?.[0] || "U"}</AvatarFallback>
+                    <AvatarImage src={"https://github.com/shadcn.png"} />
+                    <AvatarFallback>{"U"}</AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-48 bg-white text-gray-900 shadow-lg rounded-lg">
